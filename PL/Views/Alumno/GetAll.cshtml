@@ -1,0 +1,72 @@
+﻿@model ML.Alumno
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2>Alumno</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <h5>Seleccione un Alumno para editarlo o + para agregar...</h5>
+        <hr />
+    </div>
+
+</div>
+<hr />
+
+<div style="float:right;">
+    @Html.ActionLink("+", "Form", "Usuario", htmlAttributes: new { @class = "btn btn-success" })
+
+    <hr />
+</div>
+
+<br>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr style="background-color:darkslategrey">
+            <td style="color:white">Editar</td>
+            <td style="visibility:collapse; display:none;">IdAlumno</td>
+            <td style="color:white">Nombre</td>
+            <td style="color:white">Correo Institucional</td>
+            <td style="color:white">Telefono</td>
+            <td style="visibility:collapse; display:none;">IdCarrera</td>
+            <td style="color:white">Carrera</td>
+            <td style="visibility:collapse; display:none;">Id ServicioSocial</td>
+            <td style="color:white">Informacion de Dependencia</td>
+            <td style="color:white">Informacion del Responsable</td>
+            <td style="visibility:collapse; display:none;">Id Programa</td>
+            <td style="color:white">Programa</td>
+            <td style="color:white">Fecha de Inicio</td>
+            <td style="color:white">Fecha de Termino</td>
+            <td style="color:white">Tipo de Servicio</td>
+            <td style="color:white">Eliminar</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ML.Alumno alumno in Model.Alumnos)
+        {
+            <tr>
+                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Usuario", new { IdUsuario = alumno.IdAlumno })"><i class="bi bi-pencil-square"></i></a></td>
+                <td style="visibility:collapse; display:none;">@alumno.IdAlumno</td>
+                <td>@alumno.Nombre @alumno.ApellidoPaterno @alumno.ApellidoMaterno </td>
+                <td>@alumno.CorreoInstitucional</td>
+                <td>@alumno.Telefono</td>
+                <td style="visibility:collapse; display:none;">@alumno.Carreras.IdCarrera</td>
+                <td>@alumno.Carreras.Nombre</td>
+                <td style="visibility:collapse; display:none;">@alumno.ServicioSocial.IdServicioSocial</td>
+                <td>Nombre: @alumno.ServicioSocial.NombreDependencia, Tipo de dependencia: @alumno.ServicioSocial.Dependencia.Nombre, Nombre del Departamento: @alumno.ServicioSocial.NombreDepartamento, Domicilio: @alumno.ServicioSocial.Domicilio, Municipio: @alumno.ServicioSocial.Municipio, Telefono: @alumno.ServicioSocial.Telefono </td>
+                <td>Nombre: @alumno.ServicioSocial.ResponsableNombre, Cargo: @alumno.ServicioSocial.CargoResponsable</td>
+                <td style="visibility:collapse; display:none;">@alumno.ServicioSocial.Programa.IdPrograma</td>
+                <td>@alumno.ServicioSocial.Programa.Nombre</td>
+                <td>@alumno.ServicioSocial.FechaInicio</td>
+                <td>@alumno.ServicioSocial.FechaTermino</td>
+                <td>@alumno.ServicioSocial.TipoServicio.Nombre</td>
+                <td><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Usuario", new { IdUsuario= alumno.IdAlumno})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-trash3-fill"></i></a></td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>

@@ -37,5 +37,7 @@ namespace ML
         public decimal Promedio { get; set; }
         public ML.ServicioSocial ServicioSocial {get; set;}
 
+        public List<Object> Alumnos { get; set; }
+
     }
 }
