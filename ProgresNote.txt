@@ -1,0 +1,72 @@
+DATOS DEL ALUMNO
+
+NOMBRE
+APELLIDO PATERNO
+APELLIDO MATERNO
+CORREO INSTITUCIONAL
+TELEFONO
+EDAD
+SEXO
+CARRERA DROPDOWNLIST
+CURP
+NUMERO DE CREDITOS
+VIDA ACADEMICA
+PROMEDIO
+
+
+
+INGENIERÍA INDUSTRIAL
+
+
+FIRST DELETE Servicio and before delete Alumno
+
+Scaffold-DbContext "DESKTOP-AVT6ORL\SQLEXPRESS; Database= AReyesTescoServicio; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+
+
+
+
+PROPIEDADES DE DL ALUMNO AGREGADAS DE MAS
+
+
+NombreCarrera
+ServicioSocial.[NombreDependencia]
+      ,ServicioSocial.[IdTipoDependencia]
+	  ,TipoDependencia.Nombre as TipoDeDependencia
+      ,ServicioSocial.[NombreDepartamento]
+      ,ServicioSocial.[Domicilio]
+      ,ServicioSocial.[Municipio]
+      ,ServicioSocial.[Telefono]
+      ,ServicioSocial.[ResponsableNombre]
+      ,ServicioSocial.[CargoResponsable]
+      ,ServicioSocial.[IdPrograma]
+	  , Programa.Nombre as NombrePrograma
+      ,ServicioSocial.[Actividades]
+      ,ServicioSocial.[HorasAlDia]
+      ,ServicioSocial.[Turno]
+      ,ServicioSocial.[FechaInicio]
+      ,ServicioSocial.[FechaTermino]
+      ,ServicioSocial.[IdTipoServicio]
+	  ,TipoServicio.Nombre as TipoDeServicio
+
+
+    public string TelefonoAlumno { get; set; } = null;
+
+
+
+CATALOGOS: 
+
+Carreras -- ya 
+Programa -- ya
+TipoDependencia --
+TipoServicio
+
+
+
+
+
+
+
+
+
+agregar una nueva variable a add 
+
