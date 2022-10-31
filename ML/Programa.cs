@@ -10,5 +10,6 @@ namespace ML
     {
         public int IdPrograma { get; set; }
         public string Nombre { get; set; }
+        public List<object> Programas { get; set; }
     }
 }

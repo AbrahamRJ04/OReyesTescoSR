@@ -1,0 +1,531 @@
+﻿@model ML.Alumno
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Alumno</h2>
+            <h5>Ingrese los datos del Servicio Social:</h5>
+        </div>
+        <img align="right" src="data:image/jpeg;base64,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" alt="" style="width:250px ; height:150px">
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @*Crea un salto de linea*@
+            <hr />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("Form", "Alumno", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div style="visibility:collapse; display:none;">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.IdAlumno)
+                        @Html.TextBoxFor(model => model.IdAlumno, new { @class = "form-control", @id = "txtIdAlumno" })
+                        @Html.ValidationMessageFor(model => model.IdAlumno)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Nombre) @Html.ValidationMessageFor(model => model.Nombre,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event, 'lblNombre')" })
+                            @Html.Label("", null, new {@id = "lblNombre"})
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ApellidoPaterno) @Html.ValidationMessageFor(model => model.ApellidoPaterno,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(event, 'lblApellidoPaterno')" })
+                            @Html.Label("", null, new {@id = "lblApellidoPaterno"})
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ApellidoMaterno) @Html.ValidationMessageFor(model => model.ApellidoMaterno,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(event, 'lblApellidoMaterno')" })
+                            @Html.Label("", null, new {@id = "lblApellidoMaterno"})
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.CorreoInstitucional) @Html.ValidationMessageFor(model => model.CorreoInstitucional,"" , new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-envelope-paper" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.CorreoInstitucional, new { @class = "form-control", @id = "txtCorreoInstitucional" })
+                        </div>
+                        @Html.Label("", null,  new { @id="ldlCorreoInstitucional" } )
+                        @Html.Label("Confirmar Correo: ")
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-envelope-paper" style="color: darkgreen"></i></span>
+                            @Html.TextBox("Confirmar Correo",null,new { @class = "form-control", @id = "txtEmailConfirmar", placeholder=" Confirmar Correo", @style = "border-color : darkgreen" } )
+                        </div>
+                        @Html.Label("",null, new { @id= "ldlConfirmarEmail" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Telefono)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @id = "txtTelefono" , @onkeypress = "return SoloNumeros(event, 'ldlTelefono')", @maxlength = "10"  })
+                            @Html.ValidationMessageFor(model => model.Telefono,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlTelefono" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Edad)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.Edad, new { @class = "form-control", @id = "txtEdad" , @onkeypress = "return SoloNumeros(event, 'ldlEdad')", @maxlength = "2"  })
+                            @Html.ValidationMessageFor(model => model.Edad,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlEdad" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Sexo)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control", @id = "txtSexo" , @onkeypress = "return SoloLetras(event, 'ldlSexo')", @maxlength = "1"  })
+                            @Html.ValidationMessageFor(model => model.Edad,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlEdad" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Carreras) @Html.ValidationMessageFor(model => model.Carreras.IdCarrera,"",new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <br />
+                            <span class="input-group-text"><i class="bi bi-segmented-nav" style="color: darkgreen"></i></span>
+                            @*@Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.Carreras.IdCarrera, new SelectList(Model.Carreras.CarrerasList, "IdCarrera", "Nombre"), "Selecciona una opción", new { @class = "form-control", @style = "border-color : darkgreen" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Curp)  @Html.ValidationMessageFor(model => model.Curp,"",new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-person-rolodex" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.Curp, new { @class = "form-control", @id = "txtCurp" })
+                            @Html.Label("", null, new { @id = "ldlCurp" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NumeroCreditos)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.NumeroCreditos, new { @class = "form-control", @id = "txtNumeroCreditos" , @onkeypress = "return SoloNumeros(event, 'ldlNumeroCreditos')", @maxlength = "3"  })
+                            @Html.ValidationMessageFor(model => model.NumeroCreditos,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlNumeroCreditos" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.VidaAcademica)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.VidaAcademica, new { @class = "form-control", @id = "txtVidaAcademica" , @onkeypress = "return SoloNumeros(event, 'ldlVidaAcademica')", @maxlength = "2"  })
+                            @Html.ValidationMessageFor(model => model.VidaAcademica,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlVidaAcademica" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Promedio)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.Promedio, new { @class = "form-control", @id = "txtPromedio" , @onkeypress = "return SoloNumeros(event, 'ldlPromedio')"  })
+                            @Html.ValidationMessageFor(model => model.Promedio,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlPromedio" })
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <h2>DATOS SERVICIO SOCIAL</h2>
+                <Br/>
+                 <div style="visibility:collapse; display:none;">
+                      <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.ServicioSocial.IdServicioSocial)
+                        @Html.TextBoxFor(model => model.ServicioSocial.IdServicioSocial, new { @class = "form-control", @id = "txtIdServicioSocial" })
+                        @Html.ValidationMessageFor(model => model.ServicioSocial.IdServicioSocial)
+                     </div>
+                   </div>
+
+                <div class="row">
+                  
+                   <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.NombreDependencia) @Html.ValidationMessageFor(model => model.ServicioSocial.NombreDependencia,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.NombreDependencia, new { @class = "form-control", @id = "txtNombreDependencia" })
+                            @Html.Label("", null, new {@id = "lblNombreDependencia"})
+                        </div>
+                    </div>
+
+                     <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.Dependencia) @Html.ValidationMessageFor(model => model.ServicioSocial.Dependencia.IdTipoDependencia,"",new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <br />
+                            <span class="input-group-text"><i class="bi bi-segmented-nav" style="color: darkgreen"></i></span>
+                            @*@Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.ServicioSocial.Dependencia.IdTipoDependencia, new SelectList(Model.ServicioSocial.Dependencia.Dependencias, "IdTipoDependencia", "Nombre"), "Selecciona una opción", new { @class = "form-control", @style = "border-color : darkgreen" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.NombreDepartamento) @Html.ValidationMessageFor(model => model.ServicioSocial.NombreDepartamento,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.NombreDepartamento, new { @class = "form-control", @id = "txtNombreDepartamento" })
+                            @Html.Label("", null, new {@id = "lblNombreDepartamento"})
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.Domicilio) @Html.ValidationMessageFor(model => model.ServicioSocial.Domicilio,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.Domicilio, new { @class = "form-control", @id = "txtDomicilio" })
+                            @Html.Label("", null, new {@id = "ldlDomicilio"})
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.Municipio) @Html.ValidationMessageFor(model => model.ServicioSocial.Municipio,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.Municipio, new { @class = "form-control", @id = "txtMunicipio", @onkeypress = "return SoloLetras(event, 'lblMunicipio')" })
+                            @Html.Label("", null, new {@id = "ldlMunicipio"})
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.Telefono)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.Telefono, new { @class = "form-control", @id = "txtTelefonoDependencia" , @onkeypress = "return SoloNumeros(event, 'ldlTelefonoDependencia')", @maxlength = "10"})
+                            @Html.ValidationMessageFor(model => model.Telefono,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlTelefonoDependencia" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.ResponsableNombre) @Html.ValidationMessageFor(model => model.ServicioSocial.ResponsableNombre,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.ResponsableNombre, new { @class = "form-control", @id = "txtResponsableNombre", @onkeypress = "return SoloLetras(event, 'ldlResponsableNombre')" })
+                            @Html.Label("", null, new {@id = "ldlResponsableNombre"})
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.CargoResponsable) @Html.ValidationMessageFor(model => model.ServicioSocial.CargoResponsable,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.CargoResponsable, new { @class = "form-control", @id = "txtCargoResponsable", @onkeypress = "return SoloLetras(event, 'ldlCargoResponsable')" })
+                            @Html.Label("", null, new {@id = "ldlCargoResponsable"})
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.Programa) @Html.ValidationMessageFor(model => model.ServicioSocial.Programa.IdPrograma,"",new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <br />
+                            <span class="input-group-text"><i class="bi bi-segmented-nav" style="color: darkgreen"></i></span>
+                            @*@Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.ServicioSocial.Programa.IdPrograma, new SelectList(Model.ServicioSocial.Programa.Programas, "IdPrograma", "Nombre"), "Selecciona una opción", new { @class = "form-control", @style = "border-color : darkgreen" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.ServicioSocial.Actividades) @Html.ValidationMessageFor(model => model.ServicioSocial.Actividades,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.Actividades, new { @class = "form-control", @id = "txtActividades", @onkeypress = "return SoloLetras(event, 'ldlActividades')" })
+                            @Html.Label("", null, new {@id = "ldlActividades"})
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.HorasAlDia)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-telephone" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.HorasAlDia, new { @class = "form-control", @id = "txtHoraslAlDia" , @onkeypress = "return SoloNumeros(event, 'ldlHorasAlDia')", @maxlength = "2"  })
+                            @Html.ValidationMessageFor(model => model.ServicioSocial.HorasAlDia,"",new { @class = "text-danger"})
+                            @Html.Label("", null, new { @id  = "ldlHorasAlDia" })
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="row">
+                     <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.Turno) @Html.ValidationMessageFor(model => model.ServicioSocial.Turno,"", new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-file-person" style="color: darkgreen"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.Turno, new { @class = "form-control", @id = "txtTurno", @onkeypress = "return SoloLetras(event, 'ldlTurno')" })
+                            @Html.Label("", null, new {@id = "ldlTurno"})
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.FechaInicio)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-calendar-week" style="color: darkred"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.FechaInicio, new { @class = "form-control", @id = "txtFechaInicio"  })
+                            @Html.ValidationMessageFor(model => model.ServicioSocial.FechaInicio ,"",new { @class = "text-danger"})
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.FechaTermino)
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-calendar-week" style="color: darkred"></i></span>
+                            @Html.TextBoxFor(model => model.ServicioSocial.FechaTermino, new { @class = "form-control", @id = "txtFechaTermino"  })
+                            @Html.ValidationMessageFor(model => model.ServicioSocial.FechaTermino ,"",new { @class = "text-danger"})
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ServicioSocial.TipoServicio) @Html.ValidationMessageFor(model => model.ServicioSocial.TipoServicio.IdTipoServicio,"",new { @class = "text-danger"})
+                        <div class="input-group mb-3">
+                            <br />
+                            <span class="input-group-text"><i class="bi bi-segmented-nav" style="color: darkgreen"></i></span>
+                            @*@Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.ServicioSocial.TipoServicio.IdTipoServicio, new SelectList(Model.ServicioSocial.TipoServicio.TipoServicios, "IdTipoServicio", "Nombre"), "Selecciona una opción", new { @class = "form-control", @style = "border-color : darkgreen" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                        <hr />
+                        <input type="submit" value="Guardar" class="btn btn-outline-success btn-lg" />
+                        @Html.ActionLink("Regresar", "GetAll", "Alumno", htmlAttributes: new { @class = "btn btn-outline-danger btn-lg" })
+                        <hr />
+                    </div>
+            } 
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+    {
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+
+    @*esta, esta la referencia a jquery porque nuestro proyecto ya tiene la libreria, de ahi la tomamos*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    @*las dos de abajo son la referencia para los estilos del datepicker, se sacan de la pagina de jquery ahi no hay detalle*@
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddlPais").change(function () {
+                $("#ddlEstado").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetEstado")',
+                    data: { IdPais: $("#ddlPais").val() },
+                    success: function (estados) {
+                        $.each(estados, function (i, estados) {
+                            $("#ddlEstado").append('<option value="'
+                                + estados.idEstado + '">'
+                                + estados.nombre + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed. ' + ex);
+                    }
+                });
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddlEstado").change(function () {
+                $("#ddlMunicipio").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetMunicipio")',
+                    data: { IdEstado: $("#ddlEstado").val() },
+                    success: function (municipios) {
+                        $.each(municipios, function (i, municipios) {
+                            $("#ddlMunicipio").append('<option value="'
+                                + municipios.idMunicipio + '">'
+                                + municipios.nombre + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed. ' + ex);
+                    }
+                });
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddlMunicipio").change(function () {
+                $("#ddlColonia").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetColonia")',
+                    data: { IdMunicipio: $("#ddlMunicipio").val() },
+                    success: function (colonias) {
+                        $.each(colonias, function (i, colonias) {
+                            $("#ddlColonia").append('<option value="'
+                                + colonias.idColonia + '">'
+                                + colonias.nombre + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed. ' + ex);
+                    }
+                });
+            });
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $("#txtFechaInicio").datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true
+            }).val();
+        });
+    </script>
+
+    <script>
+        $("#txtCorreoInstitucional").blur(function () {
+            var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+            var emailaddress = $("#txtEmail").val();
+            if (!emailReg.test(emailaddress))
+                $("#ldlEmail").html('<font color="#cc0000">Porfavor ingrese un Email valido.</font>');
+            else
+                $("#ldlEmail").html('<font color="#cc0000"></font>');
+        });
+    </script>
+
+    <script>
+        $("#txtCurp").blur(function () {
+            var curpReg = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
+            var curpladdress = $("#txtCurp").val();
+            if (!curpReg.test(curpladdress))
+                $("#ldlCurp").html('<font color="#cc0000">Porfavor ingrese un Curp valido.</font>');
+            else
+                $("#ldlCurp").html('<font color="#cc0000"></font>');
+        });
+    </script>
+
+    <script>
+        $('#txtPassword, #txtPasswordConfirmar').on('keyup', function () {
+            if ($('#txtPassword').val() == $('#txtPasswordConfirmar').val()) {
+                $('#ldlPassword').html('Contraseña Valida').css('color', 'green');
+            } else
+                $('#ldlPassword').html('Las Contraseñas no coinciden').css('color', 'red');
+        });
+    </script>
+
+    <script>
+        $('#txtCorreoInstitucional, #txtEmailConfirmar').on('keyup', function () {
+            if ($('#txtCorreoInstitucional').val() == $('#txtEmailConfirmar').val()) {
+                $('#ldlConfirmarEmail').html('Email confirmado').css('color', 'green');
+            } else
+                $('#ldlConfirmarEmail').html('Los Email con coinciden').css('color', 'red');
+        });
+    </script>
+
+
+
+    <script>
+        function SoloLetras(e, controlId) {
+            var caracter = e.key;
+            if (!/^[a-zA-Z\s]*$/.test(caracter)) {
+                $('#' + controlId).text("Solo se aceptan Letras");
+                $('#' + controlId).css({ "color": "red" });
+                return false;
+            }
+            else {
+                $('#' + controlId).text("");
+                return true;
+            }
+        }
+    </script>
+
+    <script>
+        function SoloNumeros(e, controlId) {
+            var caracter = e.key;
+            if (!/^[0-9]*$/.test(caracter)) {
+                $('#' + controlId).text("Solo se aceptan Numeros");
+                $('#' + controlId).css({ "color": "red" });
+                return false;
+            }
+            else {
+                $('#' + controlId).text("");
+                return true;
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        function validateFile() {
+            var allowedExtension = ['png', 'jpg'];
+            var fileExtension = document.getElementById('IFImage').value.split('.').pop().toLowerCase();
+            var isValidFile = false;
+            for (var index in allowedExtension) {
+                if (fileExtension === allowedExtension[index]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile) {
+                alert('Las extensiones permitidas son : *.' + allowedExtension.join(', *.'));
+                document.getElementById('IFImage').value = ""
+            }
+            return isValidFile;
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#Img')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
