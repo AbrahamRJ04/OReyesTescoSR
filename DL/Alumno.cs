@@ -41,9 +41,8 @@ namespace DL
         public DateTime FechaTermino { get; set; }
         public int IdTipoServicio { get; set; }
         public string TipoDeServicio { get; set; }
-    
-        //*ESTAS SON PROPIEDADES MANIPULADAS APARTE DE ENTITYUFRAMEWORK*//
 
+        //*ESTAS SON PROPIEDADES MANIPULADAS APARTE DE ENTITYUFRAMEWORK*//
         public virtual Carrera? IdCarreraNavigation { get; set; }
         public virtual ServicioSocial? IdServicioSocialNavigation { get; set; }
     }

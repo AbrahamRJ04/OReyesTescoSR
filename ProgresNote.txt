@@ -76,4 +76,59 @@ ldlConfirmarEmail
 agregar una nueva variable a add 
 
 
+DATOS PERSONALES:
 
+NombreCompleto
+Sexo
+Telefono 
+CorreoElectronico
+Calle
+NoExt
+NoInt
+Colonia
+Municipio
+Estado
+CodigoPostal
+
+DATOS ACADEMICOS
+
+Carrera
+Especialidad
+Matricula
+VidaAcademica
+NoCreditos
+ConstanciaTerminoServicioSocial
+
+Empresa
+
+NombreDeLaEmpresa
+IdTipoEmpresa
+IdGiro
+NombreTitular
+Cargo
+Telefono
+Extencion
+CorreoElectronico
+Calle
+NoExt
+NoInt
+Colonia
+Municipio
+Estado
+CodigoPostal
+PaginaWeb
+RedSocial
+
+
+PROYECTO
+IdProyecto
+IdModalidad
+NombreIntegranteUno
+NombreIntegranteDos
+MatriculaIntegranteUno
+MatriculaIntegranteDos
+NombreProyecto
+NombreAsesorTesco
+NombreAsesorDependencia
+IdAlumno
+IdEmpresa
