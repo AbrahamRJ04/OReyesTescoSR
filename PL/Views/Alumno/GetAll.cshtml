@@ -48,7 +48,7 @@
         @foreach (ML.Alumno alumno in Model.Alumnos)
         {
             <tr>
-                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Usuario", new { IdUsuario = alumno.IdAlumno })"><i class="bi bi-pencil-square"></i></a></td>
+                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-pencil-square"></i></a></td>
                 <td style="visibility:collapse; display:none;">@alumno.IdAlumno</td>
                 <td>@alumno.Nombre @alumno.ApellidoPaterno @alumno.ApellidoMaterno </td>
                 <td>@alumno.CorreoInstitucional</td>

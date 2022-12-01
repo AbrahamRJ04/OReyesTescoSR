@@ -49,7 +49,21 @@ namespace PL.Controllers
             }
             else
             {
+                ML.Result result = BL.Alumno.GetById(IdAlumno.Value);
+                if(result.Correct)
+                {
+                    alumno = (ML.Alumno)result.Object;
+                    alumno.Carreras.CarrerasList = resultCarrera.Objects;
+                    alumno.ServicioSocial.Programa.Programas = resultPrograma.Objects;
+                    alumno.ServicioSocial.TipoServicio.TipoServicios = resultServicio.Objects;
+                    alumno.ServicioSocial.Dependencia.Dependencias = resultDependencia.Objects;
 
+                    return View(alumno);
+                }
+                else
+                {
+                    return PartialView("Modal");
+                }
             }
             return View();
         }
@@ -73,9 +87,17 @@ namespace PL.Controllers
             }
             else
             {
-                //AQUI VA EL METODO DE ACTUALIZAR
+                result = BL.Alumno.Update(alumno);
+                if(result.Correct)
+                {
+                    ViewBag.Mensaje = "Alumno actualizado correctamente";
+                }
+                else
+                {
+                    ViewBag.Mensaje = "Ocurrio un error al actualizar el equipo";
+                }
             }
-            return View(alumno);
+            return PartialView("Modal");
         }
 
         [HttpGet]

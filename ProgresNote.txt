@@ -57,10 +57,15 @@ CATALOGOS:
 
 Carreras -- ya 
 Programa -- ya
-TipoDependencia --
-TipoServicio
+TipoDependencia --ya
+TipoServicio --ya
 
 
+
+txtCorreoInstitucional
+ldlCorreoInstitucional
+txtEmailConfirmar
+ldlConfirmarEmail
 
 
 
@@ -69,4 +74,6 @@ TipoServicio
 
 
 agregar una nueva variable a add 
+
+
 

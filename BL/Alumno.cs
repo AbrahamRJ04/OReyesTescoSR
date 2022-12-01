@@ -10,7 +10,7 @@ namespace BL
 {
     public class Alumno
     {
-        
+
         public static ML.Result GetAll()
         {
             ML.Result result = new ML.Result();
@@ -187,6 +187,32 @@ namespace BL
                 using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
                 {
                     var query = context.Database.ExecuteSqlRaw($"AlumnoAdd '{alumno.ServicioSocial.NombreDependencia}',{alumno.ServicioSocial.Dependencia.IdTipoDependencia},'{alumno.ServicioSocial.NombreDepartamento}','{alumno.ServicioSocial.Domicilio}','{alumno.ServicioSocial.Municipio}','{alumno.ServicioSocial.Telefono}','{alumno.ServicioSocial.ResponsableNombre}','{alumno.ServicioSocial.CargoResponsable}',{alumno.ServicioSocial.Programa.IdPrograma},'{alumno.ServicioSocial.Actividades}',{alumno.ServicioSocial.HorasAlDia},'{alumno.ServicioSocial.Turno}','{alumno.ServicioSocial.FechaInicio}','{alumno.ServicioSocial.FechaTermino}',{alumno.ServicioSocial.TipoServicio.IdTipoServicio},'{alumno.Nombre}','{alumno.ApellidoPaterno}','{alumno.ApellidoMaterno}','{alumno.CorreoInstitucional}','{TelefonoAlumno}',{alumno.Edad},'{alumno.Sexo}',{alumno.Carreras.IdCarrera},'{alumno.Curp}','{alumno.NumeroCreditos}','{alumno.VidaAcademica}',{alumno.Promedio}");
+                    if (query > 0)
+                    {
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+            }
+            return result;
+        }
+
+        public static ML.Result Update(ML.Alumno alumno)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                {
+                    var query = context.Database.ExecuteSqlRaw($"AlumnoUpdate {alumno.ServicioSocial.IdServicioSocial},'{alumno.ServicioSocial.NombreDependencia}',{alumno.ServicioSocial.Dependencia.IdTipoDependencia},'{alumno.ServicioSocial.NombreDepartamento}','{alumno.ServicioSocial.Domicilio}','{alumno.ServicioSocial.Municipio}','{alumno.ServicioSocial.Telefono}','{alumno.ServicioSocial.ResponsableNombre}','{alumno.ServicioSocial.CargoResponsable}',{alumno.ServicioSocial.Programa.IdPrograma},'{alumno.ServicioSocial.Actividades}',{alumno.ServicioSocial.HorasAlDia},'{alumno.ServicioSocial.Turno}','{alumno.ServicioSocial.FechaInicio}','{alumno.ServicioSocial.FechaTermino}',{alumno.ServicioSocial.TipoServicio.IdTipoServicio},{alumno.IdAlumno},'{alumno.Nombre}','{alumno.ApellidoPaterno}','{alumno.ApellidoMaterno}','{alumno.CorreoInstitucional}','{alumno.Telefono}',{alumno.Edad},'{alumno.Sexo}',{alumno.Carreras.IdCarrera},'{alumno.Curp}','{alumno.NumeroCreditos}','{alumno.VidaAcademica}',{alumno.Promedio}");
                     if(query > 0)
                     {
                         result.Correct = true;
