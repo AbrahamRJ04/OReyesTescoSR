@@ -83,3 +83,266 @@ IdModalidadResidencias INT PRIMARY KEY IDENTITY(1,1),
 Modalidad VARCHAR(10)
 )
 
+---------------------------------------------------------------------------------------------------------------
+
+--CREACION DE VIEW DE LAS TABLAS
+
+USE [AReyesTescoServicio]
+GO
+CREATE VIEW ProyectoResindencias AS
+SELECT Proyecto.[IdProyecto]
+      ,Proyecto.IdModalidadResidencias
+	  ,ModalidadResidencias.Modalidad
+      ,Proyecto.[NombreIntegranteUno]
+      ,Proyecto.[NombreIntegranteDos]
+      ,Proyecto.[MatriculaIntegranteUno]
+      ,Proyecto.[MatriculaIntegranteDos]
+      ,Proyecto.[NombreProyecto]
+      ,Proyecto.[NombreAsesorTesco]
+      ,Proyecto.[NombreAsesorDependencia]
+      ,Proyecto.[IdCandidato]
+	  ,DatosPersonalesResidencias.[NombreCompleto]
+      ,DatosPersonalesResidencias.[Sexo]
+      ,DatosPersonalesResidencias.[Telefono]
+      ,DatosPersonalesResidencias.[CorreoElectronico]
+      ,DatosPersonalesResidencias.[Calle]
+      ,DatosPersonalesResidencias.[NoExt]
+      ,DatosPersonalesResidencias.[NoInt]
+      ,DatosPersonalesResidencias.[Colonia]
+      ,DatosPersonalesResidencias.[Municipio]
+      ,DatosPersonalesResidencias.[Estado]
+      ,DatosPersonalesResidencias.[CodigoPostal]
+      ,DatosPersonalesResidencias.[IdCarrera]
+	  ,Carreras.Nombre as CarreraDeAlumno
+      ,DatosPersonalesResidencias.[Especialidad]
+      ,DatosPersonalesResidencias.[Matricula]
+      ,DatosPersonalesResidencias.[VidaAcademica]
+      ,DatosPersonalesResidencias.[NoCreditos]
+      ,DatosPersonalesResidencias.[ConstanciaTerminoServicioSocial]
+      ,Proyecto.[IdEmpresaResidencias]
+	  ,EmpresaResidencias.[NombreDeEmpresa]
+      ,EmpresaResidencias.[IdTipoEmpresa]
+	  ,TipoEmpresa.TipoEmpresa
+      ,EmpresaResidencias.[IdGiro]
+	  ,GiroEmpresa.Giro
+      ,EmpresaResidencias.[IdSector]
+	  ,Sector.Sector
+      ,EmpresaResidencias.[NombreTitular] AS TitularEmpresa
+      ,EmpresaResidencias.[Cargo]
+      ,EmpresaResidencias.[Telefono] AS TelefonoDeTitular
+      ,EmpresaResidencias.[Extencion]
+      ,EmpresaResidencias.[CorreoElectronico] AS CorreoDelTitular
+      ,EmpresaResidencias.[Calle] AS CalleEmpresa
+      ,EmpresaResidencias.[NoExt] AS NumeroExtEmpresa
+      ,EmpresaResidencias.[NoInt] AS NumeroIntEmpresa
+      ,EmpresaResidencias.[Colonia] AS ColoniaEmpresa
+      ,EmpresaResidencias.[Municipio] AS MunicipioEmpresa
+      ,EmpresaResidencias.[Estado] AS EstadoEmpresa
+      ,EmpresaResidencias.[CodigoPostal] AS CodigoPostalEmpresa
+      ,EmpresaResidencias.[PaginaWeb]
+      ,EmpresaResidencias.[RedSocial]
+  FROM [dbo].[Proyecto]
+  INNER JOIN ModalidadResidencias ON ModalidadResidencias.IdModalidadResidencias = Proyecto.IdModalidadResidencias
+  INNER JOIN DatosPersonalesResidencias ON DatosPersonalesResidencias.IdCandidato = Proyecto.IdCandidato
+  INNER JOIN Carreras ON Carreras.IdCarrera = DatosPersonalesResidencias.IdCarrera
+  INNER JOIN EmpresaResidencias ON EmpresaResidencias.IdEmpresaResidencias = Proyecto.IdEmpresaResidencias
+  INNER JOIN TipoEmpresa ON TipoEmpresa.IdTipoEmpresa = EmpresaResidencias.IdTipoEmpresa
+  INNER JOIN GiroEmpresa ON GiroEmpresa.IdGiro = EmpresaResidencias.IdGiro
+  INNER JOIN Sector ON Sector.IdSector = EmpresaResidencias.IdSector
+GO
+
+--------------------------------------------------------------------------------------------------------------------
+
+-- GETALL PROYECTO
+
+USE [AReyesTescoServicio]
+GO
+CREATE PROCEDURE ProeyctoGetAll
+AS
+BEGIN
+SELECT [IdProyecto]
+      ,[IdModalidadResidencias]
+      ,[Modalidad]
+      ,[NombreIntegranteUno]
+      ,[NombreIntegranteDos]
+      ,[MatriculaIntegranteUno]
+      ,[MatriculaIntegranteDos]
+      ,[NombreProyecto]
+      ,[NombreAsesorTesco]
+      ,[NombreAsesorDependencia]
+      ,[IdCandidato]
+      ,[NombreCompleto]
+      ,[Sexo]
+      ,[Telefono]
+      ,[CorreoElectronico]
+      ,[Calle]
+      ,[NoExt]
+      ,[NoInt]
+      ,[Colonia]
+      ,[Municipio]
+      ,[Estado]
+      ,[CodigoPostal]
+      ,[IdCarrera]
+      ,[CarreraDeAlumno]
+      ,[Especialidad]
+      ,[Matricula]
+      ,[VidaAcademica]
+      ,[NoCreditos]
+      ,[ConstanciaTerminoServicioSocial]
+      ,[IdEmpresaResidencias]
+      ,[NombreDeEmpresa]
+      ,[IdTipoEmpresa]
+      ,[TipoEmpresa]
+      ,[IdGiro]
+      ,[Giro]
+      ,[IdSector]
+      ,[Sector]
+      ,[TitularEmpresa]
+      ,[Cargo]
+      ,[TelefonoDeTitular]
+      ,[Extencion]
+      ,[CorreoDelTitular]
+      ,[CalleEmpresa]
+      ,[NumeroExtEmpresa]
+      ,[NumeroIntEmpresa]
+      ,[ColoniaEmpresa]
+      ,[MunicipioEmpresa]
+      ,[EstadoEmpresa]
+      ,[CodigoPostalEmpresa]
+      ,[PaginaWeb]
+      ,[RedSocial]
+  FROM [dbo].[ProyectoResindencias]
+END
+
+
+--------------------------------------------------------------------------------------------------------------
+
+--GET BY ID PROYECTO
+
+USE [AReyesTescoServicio]
+GO
+CREATE PROCEDURE ProeyctoGetById
+@IdProyecto INT
+AS
+BEGIN
+SELECT [IdProyecto]
+      ,[IdModalidadResidencias]
+      ,[Modalidad]
+      ,[NombreIntegranteUno]
+      ,[NombreIntegranteDos]
+      ,[MatriculaIntegranteUno]
+      ,[MatriculaIntegranteDos]
+      ,[NombreProyecto]
+      ,[NombreAsesorTesco]
+      ,[NombreAsesorDependencia]
+      ,[IdCandidato]
+      ,[NombreCompleto]
+      ,[Sexo]
+      ,[Telefono]
+      ,[CorreoElectronico]
+      ,[Calle]
+      ,[NoExt]
+      ,[NoInt]
+      ,[Colonia]
+      ,[Municipio]
+      ,[Estado]
+      ,[CodigoPostal]
+      ,[IdCarrera]
+      ,[CarreraDeAlumno]
+      ,[Especialidad]
+      ,[Matricula]
+      ,[VidaAcademica]
+      ,[NoCreditos]
+      ,[ConstanciaTerminoServicioSocial]
+      ,[IdEmpresaResidencias]
+      ,[NombreDeEmpresa]
+      ,[IdTipoEmpresa]
+      ,[TipoEmpresa]
+      ,[IdGiro]
+      ,[Giro]
+      ,[IdSector]
+      ,[Sector]
+      ,[TitularEmpresa]
+      ,[Cargo]
+      ,[TelefonoDeTitular]
+      ,[Extencion]
+      ,[CorreoDelTitular]
+      ,[CalleEmpresa]
+      ,[NumeroExtEmpresa]
+      ,[NumeroIntEmpresa]
+      ,[ColoniaEmpresa]
+      ,[MunicipioEmpresa]
+      ,[EstadoEmpresa]
+      ,[CodigoPostalEmpresa]
+      ,[PaginaWeb]
+      ,[RedSocial]
+  FROM [dbo].[ProyectoResindencias]
+  WHERE IdProyecto = @IdProyecto
+END
+
+----------------------------------------------------------------------------------------------------------------
+--GetAll catalogo Tipo Empresa
+USE [AReyesTescoServicio]
+GO
+CREATE PROCEDURE TipoEmpresaGetAll
+AS
+BEGIN
+SELECT [IdTipoEmpresa]
+      ,[TipoEmpresa]
+  FROM [dbo].[TipoEmpresa]
+END
+
+
+GO
+-------------------------------------------------------------------------------------------------------------------------------
+
+--Get All GiroEmpresa
+
+USE [AReyesTescoServicio]
+GO
+CREATE PROCEDURE GiroEmpresaGetAll
+AS
+BEGIN
+SELECT [IdGiro]
+      ,[Giro]
+  FROM [dbo].[GiroEmpresa]
+  END
+GO
+
+------------------------------------------------------------------------------------------------------------------
+
+--Sector GetAll
+
+USE [AReyesTescoServicio]
+GO
+CREATE PROCEDURE SectorGetAll
+AS
+BEGIN
+SELECT [IdSector]
+      ,[Sector]
+  FROM [dbo].[Sector]
+  END
+GO
+
+-------------------------------------------------------------------------------------------------------------------
+
+-- ModalidadResidencias GetAll
+
+USE [AReyesTescoServicio]
+GO
+CREATE PROCEDURE ModalidadResidenciasGetAll
+AS
+BEGIN
+SELECT [IdModalidadResidencias]
+      ,[Modalidad]
+  FROM [dbo].[ModalidadResidencias]
+  END
+GO
+
+
+
+
+
+
+
+
