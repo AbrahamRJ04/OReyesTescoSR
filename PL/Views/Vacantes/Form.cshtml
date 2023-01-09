@@ -1,0 +1,146 @@
+﻿@model ML.VacantesServicioSocial
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Nueva Vacante</h1>
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Empresa</h2>
+            <h5>Ingrese los datos de la Empresa:</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @*Crea un salto de linea*@
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Vacantes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div style="visibility:collapse; display:none;">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.IdVacante)
+                        @Html.TextBoxFor(model => model.IdVacante, new { @class = "form-control", @id = "txtIdEmpresa" })
+                        @Html.ValidationMessageFor(model => model.IdVacante)
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Nombre)
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Telefono)
+                        @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @id = "txtTelefono" })
+                        @Html.ValidationMessageFor(model => model.Telefono)
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Direccion)
+                        @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", @id = "txtDireccion" })
+                        @Html.ValidationMessageFor(model => model.Direccion)
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        @Html.LabelFor(model => model.Descripcion)
+                        @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", @id = "txtDescripcion" })
+                        @Html.ValidationMessageFor(model => model.Descripcion)
+
+                    </div>
+                </div>
+
+                <div class=" offset-md-12">
+
+                    @Html.LabelFor(model=> model.Logo)
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
+                        <input id="IFImage" type='file' class="form-control" name="IFImage" onchange="validateFile(this), readURL(this);  " />
+                    </div>
+
+                    @if (Model.Logo != null || Model.Logo == "")
+                    {
+
+                        <img id="Img" src="data:image/*;base64,@Model.Logo" style="width:250px ; height:250px" />
+
+                    }
+                    else
+                    {
+                        <img id="Img" src="~/Imagenes/SinLogoEmpresa.png" style="width:250px ; height:250px" />
+                    }
+
+
+                </div>
+                @Html.HiddenFor(model => model.Logo)
+
+
+
+
+                <div class="col">
+                    <hr />
+                    <div class="col-md-3">
+                        <hr />
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                        @Html.ActionLink("Regresar", "GetAll", "Vacantes", htmlAttributes: new { @class = "btn btn-danger" })
+                    </div>
+                    <hr />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+@section Scripts
+    {
+    <script type="text/javascript">
+        function validateFile() {
+            var allowedExtension = ['png', 'jpg'];
+            var fileExtension = document.getElementById('IFImage').value.split('.').pop().toLowerCase();
+            var isValidFile = false;
+            for (var index in allowedExtension) {
+                if (fileExtension === allowedExtension[index]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile) {
+                alert('Las extensiones permitidas son : *.' + allowedExtension.join(', *.'));
+                document.getElementById('IFImage').value = ""
+            }
+            return isValidFile;
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#Img')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
