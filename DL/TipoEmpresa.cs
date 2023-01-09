@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DL
+namespace DL;
+
+public partial class TipoEmpresa
 {
-    public partial class TipoEmpresa
-    {
-        public TipoEmpresa()
-        {
-            EmpresaResidencia = new HashSet<EmpresaResidencia>();
-        }
+    public int IdTipoEmpresa { get; set; }
 
-        public int IdTipoEmpresa { get; set; }
-        public string? TipoEmpresa1 { get; set; }
+    public string? TipoEmpresa1 { get; set; }
 
-        public virtual ICollection<EmpresaResidencia> EmpresaResidencia { get; set; }
-    }
+    public virtual ICollection<EmpresaResidencia> EmpresaResidencia { get; } = new List<EmpresaResidencia>();
 }

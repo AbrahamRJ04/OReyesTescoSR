@@ -16,7 +16,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Alumnos.FromSqlRaw($"AlumnoGetAll").ToList();
                     result.Objects = new List<object>();
@@ -88,7 +88,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Database.ExecuteSqlRaw($"AlumnoDelete {alumno.IdAlumno},{alumno.ServicioSocial.IdServicioSocial}");
                     if (query > 0)
@@ -114,7 +114,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Alumnos.FromSqlRaw($"AlumnoGetById {IdAlumno}").AsEnumerable().FirstOrDefault();
                     if (query != null)
@@ -184,7 +184,7 @@ namespace BL
             try
             {
                 TelefonoAlumno = alumno.Telefono;
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Database.ExecuteSqlRaw($"AlumnoAdd '{alumno.ServicioSocial.NombreDependencia}',{alumno.ServicioSocial.Dependencia.IdTipoDependencia},'{alumno.ServicioSocial.NombreDepartamento}','{alumno.ServicioSocial.Domicilio}','{alumno.ServicioSocial.Municipio}','{alumno.ServicioSocial.Telefono}','{alumno.ServicioSocial.ResponsableNombre}','{alumno.ServicioSocial.CargoResponsable}',{alumno.ServicioSocial.Programa.IdPrograma},'{alumno.ServicioSocial.Actividades}',{alumno.ServicioSocial.HorasAlDia},'{alumno.ServicioSocial.Turno}','{alumno.ServicioSocial.FechaInicio}','{alumno.ServicioSocial.FechaTermino}',{alumno.ServicioSocial.TipoServicio.IdTipoServicio},'{alumno.Nombre}','{alumno.ApellidoPaterno}','{alumno.ApellidoMaterno}','{alumno.CorreoInstitucional}','{TelefonoAlumno}',{alumno.Edad},'{alumno.Sexo}',{alumno.Carreras.IdCarrera},'{alumno.Curp}','{alumno.NumeroCreditos}','{alumno.VidaAcademica}',{alumno.Promedio}");
                     if (query > 0)
@@ -210,7 +210,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Database.ExecuteSqlRaw($"AlumnoUpdate {alumno.ServicioSocial.IdServicioSocial},'{alumno.ServicioSocial.NombreDependencia}',{alumno.ServicioSocial.Dependencia.IdTipoDependencia},'{alumno.ServicioSocial.NombreDepartamento}','{alumno.ServicioSocial.Domicilio}','{alumno.ServicioSocial.Municipio}','{alumno.ServicioSocial.Telefono}','{alumno.ServicioSocial.ResponsableNombre}','{alumno.ServicioSocial.CargoResponsable}',{alumno.ServicioSocial.Programa.IdPrograma},'{alumno.ServicioSocial.Actividades}',{alumno.ServicioSocial.HorasAlDia},'{alumno.ServicioSocial.Turno}','{alumno.ServicioSocial.FechaInicio}','{alumno.ServicioSocial.FechaTermino}',{alumno.ServicioSocial.TipoServicio.IdTipoServicio},{alumno.IdAlumno},'{alumno.Nombre}','{alumno.ApellidoPaterno}','{alumno.ApellidoMaterno}','{alumno.CorreoInstitucional}','{alumno.Telefono}',{alumno.Edad},'{alumno.Sexo}',{alumno.Carreras.IdCarrera},'{alumno.Curp}','{alumno.NumeroCreditos}','{alumno.VidaAcademica}',{alumno.Promedio}");
                     if(query > 0)

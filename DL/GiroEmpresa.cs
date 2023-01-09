@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DL
+namespace DL;
+
+public partial class GiroEmpresa
 {
-    public partial class GiroEmpresa
-    {
-        public GiroEmpresa()
-        {
-            EmpresaResidencia = new HashSet<EmpresaResidencia>();
-        }
+    public int IdGiro { get; set; }
 
-        public int IdGiro { get; set; }
-        public string? Giro { get; set; }
+    public string? Giro { get; set; }
 
-        public virtual ICollection<EmpresaResidencia> EmpresaResidencia { get; set; }
-    }
+    public virtual ICollection<EmpresaResidencia> EmpresaResidencia { get; } = new List<EmpresaResidencia>();
 }

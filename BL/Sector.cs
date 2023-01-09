@@ -14,7 +14,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Sectors.FromSqlRaw("SectorGetAll").ToList();
                     result.Objects = new List<object>();

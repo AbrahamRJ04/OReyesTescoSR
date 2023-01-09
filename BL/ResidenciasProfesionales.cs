@@ -14,7 +14,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context = new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context = new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Proyectos.FromSqlRaw("ResidenciaGetAll").ToList();
                     result.Objects = new List<object>();
@@ -107,7 +107,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL.AReyesTescoServicioContext context =  new DL.AReyesTescoServicioContext())
+                using (DL.AreyesTescoServicioContext context =  new DL.AreyesTescoServicioContext())
                 {
                     var query = context.Proyectos.FromSqlRaw($"ResidenciaGetById {IdProyecto}").AsEnumerable().FirstOrDefault();
                     result.Objects = new List<object>();
