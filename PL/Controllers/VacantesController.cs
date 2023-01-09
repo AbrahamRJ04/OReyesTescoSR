@@ -1,19 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace PL.Controllers
 {
     public class VacantesController : Controller
     {
+        private static readonly ML.VacantesServicioSocial vacante = new ML.VacantesServicioSocial();
+        private static readonly MemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+
+        //[HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    ML.VacantesServicioSocial vacante = new ML.VacantesServicioSocial();
+        //    ML.Result result = BL.VacantesServicioSocial.GetAll();
+
+        //    if (result.Correct)
+        //    {
+        //        vacante.Vacantes = result.Objects;
+        //    }
+        //    return View(vacante);
+        //}
+
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int page = 1)
         {
-            ML.VacantesServicioSocial vacante = new ML.VacantesServicioSocial();
-            ML.Result result = BL.VacantesServicioSocial.GetAll();
+            const int pageSize = 10;
+
+            ML.Result result;
+            if (!cache.TryGetValue("vacantes", out result))
+            {
+                result = BL.VacantesServicioSocial.GetAll();
+                cache.Set("vacantes", result, TimeSpan.FromMinutes(5));
+            }
 
             if (result.Correct)
             {
-                vacante.Vacantes = result.Objects;
+                vacante.Vacantes = result.Objects.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                vacante.TotalPages = (int)Math.Ceiling(result.Objects.Count / (double)pageSize);
             }
+
             return View(vacante);
         }
 

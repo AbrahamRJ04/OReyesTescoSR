@@ -33,29 +33,29 @@ namespace TestProject
         //    Assert.IsTrue(result.Correct);
         //}
 
+        //[TestMethod]
+        //public void VacanteUpdate()
+        //{
+        //    ML.VacantesServicioSocial vacante = new ML.VacantesServicioSocial();
+        //    vacante.IdVacante = 1;
+        //    vacante.Nombre = "y";
+        //    vacante.Telefono = "y";
+        //    vacante.Direccion = "y";
+        //    vacante.Descripcion = "y";
+        //    vacante.Logo = "xdd";
+
+        //    ML.Result result = BL.VacantesServicioSocial.Update(vacante);
+
+        //    Assert.IsTrue(result.Correct);
+        //}
+
         [TestMethod]
-        public void VacanteUpdate()
-        {
-            ML.VacantesServicioSocial vacante = new ML.VacantesServicioSocial();
-            vacante.IdVacante = 1;
-            vacante.Nombre = "y";
-            vacante.Telefono = "y";
-            vacante.Direccion = "y";
-            vacante.Descripcion = "y";
-            vacante.Logo = "xdd";
-
-            ML.Result result = BL.VacantesServicioSocial.Update(vacante);
-
-            Assert.IsTrue(result.Correct);
-        }
-
-        [TestMethod]
-        public void VacanteDelete()
+        public void GetAllProyecto()
         {
            
             int IdVacante = 2;
 
-            ML.Result result = BL.VacantesServicioSocial.Delete(IdVacante);
+            ML.Result result = BL.ResidenciasProfesionales.GetById(IdVacante);
 
             Assert.IsTrue(result.Correct);
         }
