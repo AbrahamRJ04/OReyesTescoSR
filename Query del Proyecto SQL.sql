@@ -340,9 +340,157 @@ SELECT [IdModalidadResidencias]
 GO
 
 
+------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE ResidenciaGetAll
+AS
+BEGIN
+SELECT Proyecto.[IdProyecto]
+      ,Proyecto.IdModalidadResidencias
+	  ,ModalidadResidencias.Modalidad
+      ,Proyecto.[NombreIntegranteUno]
+      ,Proyecto.[NombreIntegranteDos]
+      ,Proyecto.[MatriculaIntegranteUno]
+      ,Proyecto.[MatriculaIntegranteDos]
+      ,Proyecto.[NombreProyecto]
+      ,Proyecto.[NombreAsesorTesco]
+      ,Proyecto.[NombreAsesorDependencia]
+      ,Proyecto.[IdCandidato]
+	  ,DatosPersonalesResidencias.[NombreCompleto]
+      ,DatosPersonalesResidencias.[Sexo]
+      ,DatosPersonalesResidencias.[Telefono]
+      ,DatosPersonalesResidencias.[CorreoElectronico]
+      ,DatosPersonalesResidencias.[Calle]
+      ,DatosPersonalesResidencias.[NoExt]
+      ,DatosPersonalesResidencias.[NoInt]
+      ,DatosPersonalesResidencias.[Colonia]
+      ,DatosPersonalesResidencias.[Municipio]
+      ,DatosPersonalesResidencias.[Estado]
+      ,DatosPersonalesResidencias.[CodigoPostal]
+      ,DatosPersonalesResidencias.[IdCarrera] 
+	  ,Carreras.Nombre as CarreraDeAlumno
+      ,DatosPersonalesResidencias.[Especialidad]
+      ,DatosPersonalesResidencias.[Matricula]
+      ,DatosPersonalesResidencias.[VidaAcademica]
+      ,DatosPersonalesResidencias.[NoCreditos]
+      ,DatosPersonalesResidencias.[ConstanciaTerminoServicioSocial]
+      ,Proyecto.[IdEmpresaResidencias]
+	  ,EmpresaResidencias.[NombreDeEmpresa]
+      ,EmpresaResidencias.[IdTipoEmpresa]
+	  ,TipoEmpresa.TipoEmpresa
+      ,EmpresaResidencias.[IdGiro]
+	  ,GiroEmpresa.Giro
+      ,EmpresaResidencias.[IdSector]
+	  ,Sector.Sector
+      ,EmpresaResidencias.[NombreTitular] AS TitularEmpresa
+      ,EmpresaResidencias.[Cargo]
+      ,EmpresaResidencias.[Telefono] AS TelefonoDeTitular
+      ,EmpresaResidencias.[Extencion]
+      ,EmpresaResidencias.[CorreoElectronico] AS CorreoDelTitular
+      ,EmpresaResidencias.[Calle] AS CalleEmpresa
+      ,EmpresaResidencias.[NoExt] AS NumeroExtEmpresa
+      ,EmpresaResidencias.[NoInt] AS NumeroIntEmpresa
+      ,EmpresaResidencias.[Colonia] AS ColoniaEmpresa
+      ,EmpresaResidencias.[Municipio] AS MunicipioEmpresa
+      ,EmpresaResidencias.[Estado] AS EstadoEmpresa
+      ,EmpresaResidencias.[CodigoPostal] AS CodigoPostalEmpresa
+      ,EmpresaResidencias.[PaginaWeb]
+      ,EmpresaResidencias.[RedSocial]
+  FROM [dbo].[Proyecto]
+  INNER JOIN ModalidadResidencias ON ModalidadResidencias.IdModalidadResidencias = Proyecto.IdModalidadResidencias
+  INNER JOIN DatosPersonalesResidencias ON DatosPersonalesResidencias.IdCandidato = Proyecto.IdCandidato
+  INNER JOIN Carreras ON Carreras.IdCarrera = DatosPersonalesResidencias.IdCarrera
+  INNER JOIN EmpresaResidencias ON EmpresaResidencias.IdEmpresaResidencias = Proyecto.IdEmpresaResidencias
+  INNER JOIN TipoEmpresa ON TipoEmpresa.IdTipoEmpresa = EmpresaResidencias.IdTipoEmpresa
+  INNER JOIN GiroEmpresa ON GiroEmpresa.IdGiro = EmpresaResidencias.IdGiro
+  INNER JOIN Sector ON Sector.IdSector = EmpresaResidencias.IdSector
+  END
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Get By Id Poryecto
 
+CREATE PROCEDURE ResidenciaGetById
+@IdProyecto INT
+AS
+BEGIN
+SELECT Proyecto.[IdProyecto]
+      ,Proyecto.IdModalidadResidencias
+	  ,ModalidadResidencias.Modalidad
+      ,Proyecto.[NombreIntegranteUno]
+      ,Proyecto.[NombreIntegranteDos]
+      ,Proyecto.[MatriculaIntegranteUno]
+      ,Proyecto.[MatriculaIntegranteDos]
+      ,Proyecto.[NombreProyecto]
+      ,Proyecto.[NombreAsesorTesco]
+      ,Proyecto.[NombreAsesorDependencia]
+      ,Proyecto.[IdCandidato]
+	  ,DatosPersonalesResidencias.[NombreCompleto]
+      ,DatosPersonalesResidencias.[Sexo]
+      ,DatosPersonalesResidencias.[Telefono]
+      ,DatosPersonalesResidencias.[CorreoElectronico]
+      ,DatosPersonalesResidencias.[Calle]
+      ,DatosPersonalesResidencias.[NoExt]
+      ,DatosPersonalesResidencias.[NoInt]
+      ,DatosPersonalesResidencias.[Colonia]
+      ,DatosPersonalesResidencias.[Municipio]
+      ,DatosPersonalesResidencias.[Estado]
+      ,DatosPersonalesResidencias.[CodigoPostal]
+      ,DatosPersonalesResidencias.[IdCarrera] 
+	  ,Carreras.Nombre as CarreraDeAlumno
+      ,DatosPersonalesResidencias.[Especialidad]
+      ,DatosPersonalesResidencias.[Matricula]
+      ,DatosPersonalesResidencias.[VidaAcademica]
+      ,DatosPersonalesResidencias.[NoCreditos]
+      ,DatosPersonalesResidencias.[ConstanciaTerminoServicioSocial]
+      ,Proyecto.[IdEmpresaResidencias]
+	  ,EmpresaResidencias.[NombreDeEmpresa]
+      ,EmpresaResidencias.[IdTipoEmpresa]
+	  ,TipoEmpresa.TipoEmpresa
+      ,EmpresaResidencias.[IdGiro]
+	  ,GiroEmpresa.Giro
+      ,EmpresaResidencias.[IdSector]
+	  ,Sector.Sector
+      ,EmpresaResidencias.[NombreTitular] AS TitularEmpresa
+      ,EmpresaResidencias.[Cargo]
+      ,EmpresaResidencias.[Telefono] AS TelefonoDeTitular
+      ,EmpresaResidencias.[Extencion]
+      ,EmpresaResidencias.[CorreoElectronico] AS CorreoDelTitular
+      ,EmpresaResidencias.[Calle] AS CalleEmpresa
+      ,EmpresaResidencias.[NoExt] AS NumeroExtEmpresa
+      ,EmpresaResidencias.[NoInt] AS NumeroIntEmpresa
+      ,EmpresaResidencias.[Colonia] AS ColoniaEmpresa
+      ,EmpresaResidencias.[Municipio] AS MunicipioEmpresa
+      ,EmpresaResidencias.[Estado] AS EstadoEmpresa
+      ,EmpresaResidencias.[CodigoPostal] AS CodigoPostalEmpresa
+      ,EmpresaResidencias.[PaginaWeb]
+      ,EmpresaResidencias.[RedSocial]
+  FROM [dbo].[Proyecto]
+  INNER JOIN ModalidadResidencias ON ModalidadResidencias.IdModalidadResidencias = Proyecto.IdModalidadResidencias
+  INNER JOIN DatosPersonalesResidencias ON DatosPersonalesResidencias.IdCandidato = Proyecto.IdCandidato
+  INNER JOIN Carreras ON Carreras.IdCarrera = DatosPersonalesResidencias.IdCarrera
+  INNER JOIN EmpresaResidencias ON EmpresaResidencias.IdEmpresaResidencias = Proyecto.IdEmpresaResidencias
+  INNER JOIN TipoEmpresa ON TipoEmpresa.IdTipoEmpresa = EmpresaResidencias.IdTipoEmpresa
+  INNER JOIN GiroEmpresa ON GiroEmpresa.IdGiro = EmpresaResidencias.IdGiro
+  INNER JOIN Sector ON Sector.IdSector = EmpresaResidencias.IdSector
+  WHERE IdProyecto = @IdProyecto
+  END
+  -----------------------------------------------------------------------------------------------------
+  CREATE PROCEDURE ProyectoDelete
+@IdProyecto INT,
+@IdCandidato INT,
+@IdEmpresaResidencias INT
+AS
+BEGIN
 
+DELETE FROM [dbo].[DatosPersonalesResidencias]
+      WHERE IdCandidato = @IdCandidato
+	  
+DELETE FROM [dbo].[EmpresaResidencias]
+      WHERE IdEmpresaResidencias = @IdEmpresaResidencias
 
+DELETE FROM [dbo].[Proyecto]
+      WHERE IdProyecto = @IdProyecto
+
+END

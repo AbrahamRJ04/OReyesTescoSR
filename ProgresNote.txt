@@ -15,6 +15,9 @@ PROMEDIO
 
 
 
+
+
+
 INGENIERÍA INDUSTRIAL
 
 
@@ -22,6 +25,7 @@ FIRST DELETE Servicio and before delete Alumno
 
 Scaffold-DbContext "DESKTOP-AVT6ORL\SQLEXPRESS; Database= AReyesTescoServicio; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 
+Scaffold-DbContext "Server=DESKTOP-AVT6ORL\SQLEXPRESS ;Database=AReyesTescoServicio;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -F
 
 
 
@@ -71,7 +75,9 @@ ldlConfirmarEmail
 
 
 
-
+DATOS PERSONALES
+EmpresaResidecias
+Proyecto
 
 agregar una nueva variable a add 
 
@@ -132,3 +138,19 @@ NombreAsesorTesco
 NombreAsesorDependencia
 IdAlumno
 IdEmpresa
+
+
+
+--Catalogos de Residencias
+
+TipoEmpresa --- Ya
+GiroEmpresa --- Ya
+Sector --- YA
+ModalidadResidencias --- Ya
+
+
+
+
+
+
+
