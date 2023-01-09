@@ -494,3 +494,102 @@ DELETE FROM [dbo].[Proyecto]
       WHERE IdProyecto = @IdProyecto
 
 END
+
+-------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE VacantesServicioSocial(
+IdVacante INT PRIMARY KEY IDENTITY(1,1),
+Nombre VARCHAR(50),
+Telefono VARCHAR(50),
+Direccion VARCHAR(250),
+VacanteDescripcion VARCHAR(250),
+Logo VARCHAR(MAX)
+)
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE VacanteGetAll
+AS
+BEGIN
+SELECT [IdVacante]
+      ,[Nombre]
+      ,[Telefono]
+      ,[Direccion]
+      ,[VacanteDescripcion]
+      ,[Logo]
+  FROM [dbo].[VacantesServicioSocial]
+END
+______________________________________________________________________________________________________________
+
+CREATE PROCEDURE VacanteGetById 
+@IdVacante INT
+AS
+BEGIN
+SELECT [IdVacante]
+      ,[Nombre]
+      ,[Telefono]
+      ,[Direccion]
+      ,[VacanteDescripcion]
+      ,[Logo]
+  FROM [dbo].[VacantesServicioSocial]
+  WHERE IdVacante = @IdVacante
+END
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE VacanteDelete
+@IdVacante INT
+AS
+BEGIN
+DELETE FROM [dbo].[VacantesServicioSocial]
+      WHERE IdVacante = @IdVacante
+END
+
+--------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE VacanteUpdate
+@IdVacante INT,
+@Nombre VARCHAR(50),
+@Telefono VARCHAR(50),
+@Direccion VARCHAR(250),
+@vacanteDescripcion VARCHAR(250),
+@Logo VARCHAR(MAX)
+AS
+BEGIN 
+UPDATE [dbo].[VacantesServicioSocial]
+   SET [Nombre] = @Nombre
+      ,[Telefono] = @Telefono
+      ,[Direccion] = @Direccion
+      ,[VacanteDescripcion] = @VacanteDescripcion
+      ,[Logo] = @Logo
+ WHERE IdVacante = @IdVacante
+
+ END
+
+ -------------------------------------------------------------------------------------------
+
+ CREATE PROCEDURE VacanteAdd
+@Nombre VARCHAR(50),
+@Telefono VARCHAR(50),
+@Direccion VARCHAR(250),
+@vacanteDescripcion VARCHAR(250),
+@Logo VARCHAR(MAX)
+AS
+BEGIN
+INSERT INTO [dbo].[VacantesServicioSocial]
+           ([Nombre]
+           ,[Telefono]
+           ,[Direccion]
+           ,[VacanteDescripcion]
+           ,[Logo])
+     VALUES
+           (@Nombre
+           ,@Telefono
+           ,@Direccion
+           ,@vacanteDescripcion
+           ,@Logo)
+
+END
