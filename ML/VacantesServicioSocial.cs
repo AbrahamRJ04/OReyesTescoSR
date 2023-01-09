@@ -14,5 +14,7 @@ namespace ML
         public string Direccion { get; set; }
         public string Descripcion { get; set; }
         public string Logo { get; set; }
+
+        public List<Object>? Vacantes { get; set; }
     }
 }
